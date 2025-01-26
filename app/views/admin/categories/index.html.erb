@@ -10,16 +10,36 @@
     <%= link_to "New category", new_admin_category_path, class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
   </div>
 
-  <div id="admin_categories" class="min-w-full">
-    <% if @admin_categories.any? %>
-      <% @admin_categories.each do |admin_category| %>
-        <%= render admin_category %>
-        <p>
-          <%= link_to "Show this category", admin_category, class: "ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-        </p>
-      <% end %>
-    <% else %>
-      <p class="text-center my-10">No categories found.</p>
-    <% end %>
+<div class="bg-white rounded-lg shadow">
+    <table class="min-w-full">
+      <thead>
+        <tr class="border-b">
+          <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Name</th>
+          <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Description</th>
+          <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200">
+              <% @admin_categories.each do |c| %>
+                <tr>
+                  <td class="px-6 py-4 text-sm text-gray-800"><%= c.name %></td>
+            <td class="px-6 py-4 text-sm text-gray-600"><%= c.description %></td>
+            <td class="px-6 py-4 text-sm">
+              <div class="flex space-x-2">
+                <%= link_to 'Edit', edit_admin_category_path(c), 
+                    class: 'rounded-md px-3.5 py-2.5 text-white bg-[#FF9119] hover:bg-[#FF9119]/80 text-white block font-medium' %>
+                <%= link_to 'Delete', admin_category_path(c), 
+                    method: :delete, 
+                    data: { confirm: 'Are you sure?' }, 
+                    class: 'rounded-md px-3.5 py-2.5 bg-red-600 hover:bg-red-500 text-white block font-medium' %>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
