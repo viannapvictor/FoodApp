@@ -18,4 +18,5 @@ Rails.application.routes.draw do
   end
 
   get "admin", to: "admin#index"
+  get "cart", to: "carts#show"
 end
