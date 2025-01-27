@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   root "home#index"
   
   resources :categories, only: [:show]
+  resources :products, only: [:show]
 
   authenticated :admin_user do
     root to: "admin#index", as: :admin_root
