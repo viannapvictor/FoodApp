@@ -7,7 +7,10 @@ Rails.application.routes.draw do
     resources :categories
   end
   devise_for :admins
+
   root "home#index"
+  
+  resources :categories, only: [:show]
 
   authenticated :admin_user do
     root to: "admin#index", as: :admin_root
